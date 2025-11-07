@@ -37,7 +37,6 @@ export const getScrumIssue = createTool({
         updatedAt: workItem.fields["System.ChangedDate"],
       };
     } catch (error) {
-      console.error("Error fetching work item:", error);
       throw new Error(`Failed to fetch scrum issue ${issueId}: ${error}`);
     }
   },

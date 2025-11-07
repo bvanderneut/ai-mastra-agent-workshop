@@ -23,11 +23,7 @@ export const getPullRequest = createTool({
       const gitApi = await connection.getGitApi();
 
       // Fetch the pullrequest data
-      const workItem = await gitApi.getPullRequestById(number);
-
-      console.log("Work Item:", workItem);
-
-     
+      const workItem = await gitApi.getPullRequestById(number);     
 
       return {
         number: number,
