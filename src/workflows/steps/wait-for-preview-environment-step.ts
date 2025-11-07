@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createStep } from "@mastra/core/workflows";
-import { parseGitHubUrl } from "../../mastra/helpers";
+import { parseAzureUrl } from "../../mastra/helpers";
 import { githubClient } from "../../mastra/github-client";
 import { GitHubComment } from "../../mastra/types";
 
@@ -17,7 +17,7 @@ export const waitForPreviewEnvironmentStep = createStep({
   execute: async (context) => {
     // Get the pull request URL from the initial workflow data
     const pullRequestUrl = context.getInitData().pullRequestUrl;
-    const { apiBase, number } = parseGitHubUrl(pullRequestUrl);
+    const { apiBase, number } = parseAzureUrl(pullRequestUrl);
     const commentsUrl = `${apiBase}/issues/${number}/comments`;
 
     console.log(`Waiting for preview environment...`);

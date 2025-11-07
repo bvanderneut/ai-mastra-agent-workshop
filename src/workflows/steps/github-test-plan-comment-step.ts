@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createStep } from "@mastra/core/workflows";
 import { testPlanOutputSchema } from "./generate-test-plan-step";
-import { parseGitHubUrl } from "../../mastra/helpers";
+import { parseAzureUrl } from "../../mastra/helpers";
 import { githubClient } from "../../mastra/github-client";
 import { handleGitHubResponse } from "../../mastra/error-handler";
 
@@ -32,7 +32,7 @@ export const githubTestPlanCommentStep = createStep({
     const token = process.env.GITHUB_TOKEN;
 
     // Parse PR URL
-    const { apiBase, number } = parseGitHubUrl(pullRequestUrl);
+    const { apiBase, number } = parseAzureUrl(pullRequestUrl);
     const apiUrl = `${apiBase}/issues/${number}/comments`;
 
     const commentBody = !needsTesting

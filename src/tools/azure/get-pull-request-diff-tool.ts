@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { parseGitHubUrl } from "../../mastra/helpers";
+import { parseAzureUrl } from "../../mastra/helpers";
 import { githubClient } from "../../mastra/github-client";
 import { handleGitHubResponse } from "../../mastra/error-handler";
 import { GitHubFile } from "../../mastra/types";
@@ -10,9 +10,9 @@ export const getPullRequestDiff = createTool({
   inputSchema: z.object({
     pullRequestUrl: z.string(),
   }),
-  description: `Fetches the file changes (diff) from a GitHub pull request URL`,
+  description: `Fetches the file changes (diff) from a Azure pull request URL`,
   execute: async ({ context: { pullRequestUrl } }) => {
-    const { apiBase, number } = parseGitHubUrl(pullRequestUrl);
+    const { apiBase, number } = parseAzureUrl(pullRequestUrl);
     const apiUrl = `${apiBase}/pulls/${number}/files`;
 
     const response = await githubClient.get<GitHubFile[]>(apiUrl);

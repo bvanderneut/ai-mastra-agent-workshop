@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { parseGitHubUrl } from "../../mastra/helpers";
+import { parseAzureUrl } from "../../mastra/helpers";
 import { githubClient } from "../../mastra/github-client";
 import { handleGitHubResponse } from "../../mastra/error-handler";
 import { GitHubComment } from "../../mastra/types";
@@ -12,7 +12,7 @@ export const getPullRequestComments = createTool({
   }),
   description: `Fetches comments from a GitHub pull request. Useful for understanding discussion and requirements.`,
   execute: async ({ context: { pullRequestUrl } }) => {
-    const { apiBase, number } = parseGitHubUrl(pullRequestUrl);
+    const { apiBase, number } = parseAzureUrl(pullRequestUrl);
     const apiUrl = `${apiBase}/issues/${number}/comments`;
 
     const response = await githubClient.get<GitHubComment[]>(apiUrl);

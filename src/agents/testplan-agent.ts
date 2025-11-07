@@ -1,8 +1,8 @@
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
-import { getPullRequestDiff } from "../tools/github/get-pull-request-diff-tool";
-import { getPullRequestComments } from "../tools/github/get-pull-request-comments-tool";
-import { getPullRequest } from "../tools/github/get-pull-request-tool";
+import { getPullRequestDiff } from "../tools/azure/get-pull-request-diff-tool";
+import { getPullRequestComments } from "../tools/azure/get-pull-request-comments-tool";
+import { getPullRequest } from "../tools/azure/get-pull-request-tool";
 import { getScrumIssue } from "../tools/scrum/get-scrum-issue-tool";
 
 export const testplanAgent = new Agent({
